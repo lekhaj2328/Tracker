@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Learning Command Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <p class="tag">Data Analytics Internship Roadmap (2026 -> Mar 2028)</p>
+            <h1>Neon Learning Command Center</h1>
+            <p class="subtitle">
+                Track every small to large topic across Data Analytics, SQL, Java, Python, DSA, ML basics,
+                projects, certifications, and internship prep.
+            </p>
+            <div class="hero-actions">
+                <button id="startLearningBtn" class="btn-primary">Start Learning</button>
+                <button id="enableNotifyBtn" class="btn-secondary">Enable Notifications</button>
+            </div>
+        </div>
+        <div class="score-box">
+            <p class="score-label">Concepts Covered</p>
+            <p id="conceptScore" class="score-value">0 / 0</p>
+            <p id="confidenceScore" class="score-confidence">Confidence Index: 0%</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="grid stats-grid">
+            <article class="card">
+                <h2>Overall Progress</h2>
+                <canvas id="progressDoughnut"></canvas>
+            </article>
+            <article class="card">
+                <h2>Skill Completion</h2>
+                <canvas id="skillBarChart"></canvas>
+            </article>
+            <article class="card">
+                <h2>Monthly Momentum</h2>
+                <canvas id="monthlyLineChart"></canvas>
+            </article>
+        </section>
+
+        <section class="card quick-panel">
+            <h2>Quick Scheduler & Reminder</h2>
+            <div class="quick-controls">
+                <label>
+                    Select topic
+                    <select id="topicSelector"></select>
+                </label>
+                <label>
+                    Reminder time
+                    <input id="reminderInput" type="datetime-local">
+                </label>
+                <button id="saveReminderBtn" class="btn-primary">Set Reminder</button>
+            </div>
+            <p id="reminderStatus" class="status-text"></p>
+        </section>
+
+        <section class="card">
+            <h2>Your Learning Roadmap</h2>
+            <p class="hint">Use filters to focus quickly. Track each concept as <b>Completed</b>, <b>Revise</b>, or <b>Schedule Later</b>.</p>
+            <div class="filters">
+                <input id="searchInput" type="text" placeholder="Search topics, e.g. Binary Search, Tableau">
+                <select id="skillFilter">
+                    <option value="all">All Skills</option>
+                </select>
+                <select id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                    <option value="revise">Revise</option>
+                    <option value="later">Schedule Later</option>
+                </select>
+            </div>
+            <div id="roadmapContainer" class="roadmap"></div>
+        </section>
+
+        <section class="grid two-col">
+            <article class="card">
+                <h2>Course Progress Tracker</h2>
+                <div id="courseContainer"></div>
+            </article>
+            <article class="card">
+                <h2>Certification Tracker</h2>
+                <div id="certContainer"></div>
+            </article>
+        </section>
+    </main>
+
+    <div id="learningModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Start Learning: Topic Command List</h3>
+            <p>Pick any concept and mark status as you progress.</p>
+            <div id="modalTopicList" class="modal-list"></div>
+            <button id="closeModalBtn" class="btn-secondary">Close</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
